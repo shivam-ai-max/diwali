@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Diwali</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f9f0d1;
+      margin: 0;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .page {
+      display: none;
+      transition: opacity 0.5s;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .greeting h1 {
+      color: #ff8800;
+      font-size: 3em;
+      margin: 10px 0;
+    }
+
+    .greeting p {
+      color: #555;
+      font-size: 1.2em;
+    }
+
+    .image-container {
+      margin: 20px auto;
+      max-width: 500px;
+    }
+
+    .image-container img {
+      width: 100%;
+      border: 5px solid #ff8800;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      color: #fff;
+      background-color: #ff8800;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #ff6600;
+    }
+
+    /* Style for falling flowers */
+    .flower {
+      position: absolute;
+      top: -50px;
+      font-size: 24px;
+      color: #ff66b2;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+      }
+    }
+
+    .poem-container {
+      max-width: 600px;
+      margin: 0 auto;
+      color: #333;
+      text-align: left;
+      font-size: 1.1em;
+      line-height: 1.6;
+      background: #fff8e1;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <!-- First Page with Greeting -->
+  <div class="page active" id="page1">
+    <div class="greeting">
+      <h1>Happy Diwali to My Love, the light of my life!</h1>
+      <p>Got something for ya 🌹💕 </p>
+    </div>
+    <button onclick="showNextPage()">Next</button>
+  </div>
+
+  <!-- Second Page with First Image -->
+  <div class="page" id="page2">
+    <div class="image-container">
+      <img src="image1.jpg" alt="Image 1">
+    </div>
+    <button onclick="showNextPage()">Next</button>
+  </div>
+
+  <!-- Third Page with Second Image -->
+  <div class="page" id="page3">
+    <div class="image-container">
+      <img src="image2.jpg" alt="Image 2">
+    </div>
+    <button onclick="showNextPage()">Next</button>
+  </div>
+
+  <!-- Fourth Page with Third Image -->
+  <div class="page" id="page4">
+    <div class="image-container">
+      <img src="image3.jpg" alt="Image 3">
+    </div>
+    <button onclick="showNextPage()">Next</button>
+  </div>
+
+  <!-- Fifth Page with Fourth Image -->
+  <div class="page" id="page5">
+    <div class="image-container">
+      <img src="image4.jpg" alt="Image 4">
+    </div>
+    <button onclick="showNextPage()">Read Poem</button>
+  </div>
+
+  <!-- Sixth Page with Poem -->
+  <div class="page" id="page6">
+    <div class="poem-container">
+      <h2>Goddess in Yellow</h2>
+      <p>
+        In a saree of sunlit gold, she stands,<br>
+        Beauty woven in each fold, kissed by divine hands.<br>
+        A butterfly necklace rests with pride,<br>
+        Like wings of wonder, by her beauty tied.<br><br>
+
+        Pearls adorn her, soft and bright,<br>
+        Earrings glistening in the gentle light.<br>
+        A bindi, black—a touch of art,<br>
+        Marks her forehead, pure and smart.<br><br>
+
+        Her hair flows long, a midnight stream,<br>
+        Framing her face like a lover’s dream.<br>
+        And those eyes, so deep, so wise,<br>
+        Hold constellations, the endless skies.<br><br>
+
+        Her lips—perfect, tender, sweet,<br>
+        Each smile a spell, each glance a beat.<br>
+        And under her eye, a mole so rare,<br>
+        A secret mark, heaven’s own care.<br><br>
+
+        A kangan clasps her wrist so fine,<br>
+        Chiming softly, a sacred sign.<br>
+        In her presence, I lose all sense of time,<br>
+        For she is poetry, she is rhyme.<br><br>
+
+        And in that night, she stole my soul,<br>
+        As I fell deeper, lost, yet whole.<br>
+        With every glance, my heart raced wild,<br>
+        A lover entranced, a poet beguiled.<br><br>
+
+        She makes my pulse skip, my senses blaze,<br>
+        Setting my world in a golden haze.<br>
+        I wish I could lend her my own eyes,<br>
+        To show her beauty, vast as skies.<br><br>
+
+        How I love her, words can’t contain,<br>
+        This endless heartbeat, this sweet refrain.<br>
+        For in her light, I lose my way,<br>
+        Yet find a love that cannot sway.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Falling flowers animation
+    function createFlower() {
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      flower.innerText = '🌸';
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = Math.random() * 2 + 3 + 's';
+      document.body.appendChild(flower);
+
+      setTimeout(() => {
+        flower.remove();
+      }, 5000);
+    }
+
+    setInterval(createFlower, 300);
+
+    // Page navigation logic
+    let currentPage = 1;
+
+    function showNextPage() {
+      document.getElementById(`page${currentPage}`).classList.remove("active");
+      currentPage++;
+      if (currentPage <= 6) {
+        document.getElementById(`page${currentPage}`).classList.add("active");
+      }
+    }
+  </script>
+</body>
+</html>
